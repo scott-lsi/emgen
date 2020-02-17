@@ -1,0 +1,56 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// fontawesome free
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+html {
+    @extend .h-100;
+}
+
+body {
+    @extend .d-flex;
+    @extend .flex-column;
+    @extend .h-100;
+}
+
+#header {
+    @extend .mb-4;
+}
+
+#footer {
+    @extend .mt-auto;
+    @extend .py-3;
+    @extend .bg-light;
+    @extend .text-center;
+}
+
+#generate-templates-button {
+    font-size: 4em;
+    padding: 3em;
+}
+
+#preview {
+    @extend .mt-2;
+    width: 100%;
+    height: 1002px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#create-person, #edit-person {
+    #templates {
+        .btn-group-toggle {
+            display: inline-block;
+        }
+    }
+}
