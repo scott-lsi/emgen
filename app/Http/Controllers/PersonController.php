@@ -53,6 +53,11 @@ class PersonController extends Controller
         $person->identifier = $request->identifier;
         $person->job_title = $request->job_title;
         $person->phone_number = $request->phone_number;
+        if($request->tpm_trained){
+            $person->tpm_trained = $request->tpm_trained;
+        } else {
+            $person->tpm_trained = 0;
+        }
         $person->save();
         
         $person->templates()->attach($request->templates);
@@ -110,6 +115,11 @@ class PersonController extends Controller
         $person->identifier = $request->identifier;
         $person->job_title = $request->job_title;
         $person->phone_number = $request->phone_number;
+        if($request->tpm_trained){
+            $person->tpm_trained = $request->tpm_trained;
+        } else {
+            $person->tpm_trained = 0;
+        }
         $person->save();
         
         $person->templates()->sync($request->templates);

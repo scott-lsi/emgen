@@ -33,6 +33,13 @@
         <input type="text" id="phone-number" class="form-control" name="phone_number">
     </div>
 
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" id="tpm_trained">
+        <label class="form-check-label" for="tpm_trained">
+            TPM Trained
+        </label>
+    </div>
+
     <hr>
 
     <h3>Templates</h3>

@@ -184,6 +184,11 @@ class TemplateController extends Controller
         $content = str_replace('##JOB_TITLE##', $person->job_title, $content);
         $content = str_replace('##PHONE_NUMBER##', $person->phone_number, $content);
         $content = str_replace('##MOBILE_NUMBER##', $person->mobile_number, $content);
+        if($person->tpm_trained){
+            $content = str_replace('##TPM##', '<img src="http://util.lsipower.co.uk/email/img/tpm.png" alt="TPM Trained" border="0">', $content);
+        } else {
+            $content = str_replace('##TPM##', '', $content);
+        }
         
         return $content;
     }

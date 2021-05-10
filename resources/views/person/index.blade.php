@@ -18,6 +18,7 @@
             <th>Identifier</th>
             <th>Job Title</th>
             <th>Phone Number</th>
+            <th>TPM Trained</th>
             <th>Templates</th>
             <th>Created</th>
             <th>Updated</th>
@@ -32,6 +33,7 @@
             <td>{{ $person->identifier }}</td>
             <td>{{ $person->job_title }}</td>
             <td>{{ $person->phone_number }}</td>
+            <td>@if($person->tpm_trained) <i class="fa fa-check"></i> @endif</td>
             <td>
                 <ul class="list-unstyled mb-0">
                     @foreach($person->templates as $template)
