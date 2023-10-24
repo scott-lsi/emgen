@@ -177,18 +177,37 @@ class TemplateController extends Controller
         if(is_null($person)){
             $person = Person::all()->first();
         }
-        
-        $content = str_replace('##NAME##', $person->name, $content);
-        $content = str_replace('##IDENTIFIER##', $person->identifier, $content);
+
         $content = str_replace('##EMAILNAME##', $person->emailname, $content);
-        $content = str_replace('##JOB_TITLE##', $person->job_title, $content);
-        $content = str_replace('##PHONE_NUMBER##', $person->phone_number, $content);
-        $content = str_replace('##MOBILE_NUMBER##', $person->mobile_number, $content);
-        if($person->tpm_trained){
-            $content = str_replace('##TPM##', '<img src="http://util.lsipower.co.uk/email/img/tpm.png" alt="TPM Trained" border="0">', $content);
-        } else {
-            $content = str_replace('##TPM##', '', $content);
+
+        $personaldetails = '<table cellpadding="0" cellspacing="0" width="600">';
+        $personaldetails .= '<tr>';
+        $personaldetails .= '<td width="160">';
+        $personaldetails .= '<img src="http://util.lsipower.co.uk/email/2022/photo/' . $person->identifier . '.jpg" alt="' . $person->name . '" border="0" width="140" height="140">';
+        $personaldetails .= '</td>';
+        $personaldetails .= '<td style="font-family:calibri,arial,sans-serif;color:#595F51;font-size:11pt;">';
+        $personaldetails .= $person->name . '<br />';
+        $personaldetails .= $person->job_title . '<br /><br />';
+        $personaldetails .= 'DDi: ' . $person->phone_number . '<br />';
+        $personaldetails .= 'Main: 01274 852598<br />';
+        $personaldetails .= 'E-Mail: <a href="mailto:' . $person->emailname . '@lsi.co.uk">' . $person->emailname . '@lsi.co.uk</a>';
+        if($person->linkedin){
+            $personaldetails .= '<br /><br />';
+            $personaldetails .= '<img src="http://util.lsipower.co.uk/email/2022/linkedin.png" alt="LinkedIn Logo" border="0" style="vertical-align: text-top">&nbsp;&nbsp;';
+            $personaldetails .= '<a href="' . $person->linkedin . '">';
+            $personaldetails .= str_replace('https://www.linkedin.com', '', $person->linkedin);
+            $personaldetails .= '</a>';
         }
+        if($person->tpm_trained){
+            $personaldetails .= '<td align="right">';
+            $personaldetails .= '<img src="http://util.lsipower.co.uk/email/img/tpm.png" alt="TPM Trained" border="0">';
+            $personaldetails .= '</td>';
+        }
+        $personaldetails .= '</td>';
+        $personaldetails .= '</tr>';
+        $personaldetails .= '</table>';
+
+        $content = str_replace('##PERSONALDETAILS##', $personaldetails, $content);
         
         return $content;
     }

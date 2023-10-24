@@ -49,7 +49,7 @@
     </div>
 
     <footer id="footer">
-        &copy; LSi Ltd 2020 @if(date('Y') !== '2020') &ndash; date('Y') @endif
+        &copy; LSi Ltd 2020 @if(date('Y') !== '2020') &ndash; {{ date('Y') }} @endif
     </footer>
 </body>
 </html>

@@ -18,29 +18,41 @@
     </div>
 
     <div class="form-group">
-        <label for="name">Email Name</label>
+        <label for="emailname">Email Name</label>
         <input type="text" id="emailname" class="form-control" name="emailname" value="{{ $person->emailname }}">
     </div>
 
     <div class="form-group">
-        <label for="name">Identifier</label>
+        <label for="identifier">Identifier</label>
         <input type="text" id="identifier" class="form-control" name="identifier" value="{{ $person->identifier }}">
     </div>
 
     <div class="form-group">
-        <label for="name">Job Title</label>
+        <label for="job-title">Job Title</label>
         <input type="text" id="job-title" class="form-control" name="job_title" value="{{ $person->job_title }}">
     </div>
 
     <div class="form-group">
-        <label for="name">Phone Number</label>
+        <label for="phone-number">Phone Number</label>
         <input type="text" id="phone-number" class="form-control" name="phone_number" value="{{ $person->phone_number }}">
     </div>
 
+    <div class="form-group">
+        <label for="linkedin">LinkedIn URL</label>
+        <input type="text" id="linkedin" class="form-control" name="linkedin" value="{{ $person->linkedin }}">
+    </div>
+
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="1" id="tpm_trained" name="tpm_trained">
+        <input class="form-check-input" type="checkbox" value="1" id="tpm_trained" name="tpm_trained" @if($person->tpm_trained) checked @endif>
         <label class="form-check-label" for="tpm_trained">
             TPM Trained
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" id="nopersonalimage" name="nopersonalimage" @if($person->nopersonalimage) checked @endif>
+        <label class="form-check-label" for="nopersonalimage">
+            No Personal Image
         </label>
     </div>
 

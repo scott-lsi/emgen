@@ -58,6 +58,11 @@ class PersonController extends Controller
         } else {
             $person->tpm_trained = 0;
         }
+        if($request->nopersonalimage){
+            $person->nopersonalimage = $request->nopersonalimage;
+        } else {
+            $person->nopersonalimage = 0;
+        }
         $person->save();
         
         $person->templates()->attach($request->templates);
@@ -120,6 +125,12 @@ class PersonController extends Controller
         } else {
             $person->tpm_trained = 0;
         }
+        if($request->nopersonalimage){
+            $person->nopersonalimage = $request->nopersonalimage;
+        } else {
+            $person->nopersonalimage = 0;
+        }
+        $person->linkedin = $request->linkedin;
         $person->save();
         
         $person->templates()->sync($request->templates);
