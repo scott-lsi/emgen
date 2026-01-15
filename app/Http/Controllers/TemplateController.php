@@ -80,10 +80,10 @@ class TemplateController extends Controller
         $template = Template::with(['people' => function($q){
             return $q->orderBy('name');
         }])->find($id);
-        
+
         // the the parts that are in this template
         $this_template_parts = $template->template_parts()->orderBy('template_template_part.order')->get();
-        
+
         // get all template parts
         $all_template_parts = TemplatePart::orderBy('type')->orderBy('name')->get();
         // remove the ones that are already in the template
@@ -182,9 +182,14 @@ class TemplateController extends Controller
 
         $personaldetails = '<table cellpadding="0" cellspacing="0" width="600">';
         $personaldetails .= '<tr>';
-        $personaldetails .= '<td width="160">';
-        $personaldetails .= '<img src="http://util.lsipower.co.uk/email/2022/photo/' . $person->identifier . '.jpg" alt="' . $person->name . '" border="0" width="140" height="140">';
-        $personaldetails .= '</td>';
+
+        //HT Mukwenga, enforce no image
+        if($person->nopersonalimage === 0) {
+            $personaldetails .= '<td width="160">';
+            $personaldetails .= '<img src="http://util.lsipower.co.uk/email/2022/photo/' . $person->identifier . '.jpg" alt="' . $person->name . '" border="0" width="140" height="140">';
+            $personaldetails .= '</td>';
+        }
+
         $personaldetails .= '<td style="font-family:calibri,arial,sans-serif;color:#595F51;font-size:11pt;">';
         $personaldetails .= $person->name . '<br />';
         $personaldetails .= $person->job_title . '<br /><br />';
@@ -208,14 +213,14 @@ class TemplateController extends Controller
         $personaldetails .= '</table>';
 
         $content = str_replace('##PERSONALDETAILS##', $personaldetails, $content);
-        
+
         return $content;
     }
 
     public function getGenerate()
     {
         $people = Person::with('templates')->get();
-        
+
         foreach($people as $person){
             foreach($person->templates as $template){
                 $filename = $person->name . ' - ' . $template->name . '.html';
